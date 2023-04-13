@@ -9,6 +9,8 @@
   "scripts": {
     "build": "npx tsc",
     "build:watch": "npx tsc --watch",
+    "build:prd": "npm install && npx tsc",
+    "start": "node dist/app.js",
     "start:dev": "nodemon dist/index.js"
   },
   "keywords": [],
