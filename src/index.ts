@@ -16,12 +16,8 @@ const app = new App({
 // "hello" を含むメッセージをリッスンします
 app.message('', async ({ message, say }) => {
   // イベントがトリガーされたチャンネルに say() でメッセージを送信します
-  if (
-    message.subtype !== 'message_deleted' &&
-    message.subtype !== 'message_replied' &&
-    message.subtype !== 'message_changed'
-  ) {
-    await say(`Hello, <@${message.text}>`);
+  if (!message.subtype) {
+    await say(`Hello, <@${message.user}>. You said: ${message.text}`);
   }
 });
 
