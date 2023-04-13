@@ -13,37 +13,23 @@ const app = new App({
   signingSecret: env.SLACK_SIGNING_SECRET,
 });
 
-app.event('message', async ({ event, client, logger }) => {
-  try {
-    const result = await client.chat.postMessage({
-      channel: event.channel,
-      text: `Hello world!`,
-    });
-    logger.info(result);
-  } catch (error) {
-    logger.error(error);
-  }
-});
-
-// app.event('team_join', async ({ event, client, logger }) => {
+// app.event('message', async ({ event, client, logger }) => {
 //   try {
-//     // 組み込みの client で chat.postMessage を呼び出す
 //     const result = await client.chat.postMessage({
-//       channel: welcomeChannelId,
-//       text: `Welcome to the team, <@${event.user.id}>! 🎉 You can introduce yourself in this channel.`
+//       channel: event.channel,
+//       text: `Hello world!`,
 //     });
 //     logger.info(result);
-//   }
-//   catch (error) {
+//   } catch (error) {
 //     logger.error(error);
 //   }
 // });
 
-// app.message('', async ({ message, say }) => {
-//   if (!message.subtype) {
-//     await say(`Hello, <@${message.user}>. You said: ${message.text}`);
-//   }
-// });
+app.message('', async ({ message, say }) => {
+  if (!message.subtype) {
+    await say(`Hello, <@${message.user}>. You said: ${message.text}`);
+  }
+});
 
 (async () => {
   // アプリを起動します
