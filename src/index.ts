@@ -52,13 +52,11 @@ app.message('', async ({ message, say }) => {
 });
 
 app.action('button_click', async ({ body, ack, say }) => {
-  // アクションのリクエストを確認
   await ack();
   await say(`<@${body.user.id}> clicked the button`);
 });
 
 (async () => {
-  // アプリを起動します
   await app.start(process.env.PORT || 3000);
 
   console.log('⚡️ Bolt app is running!');
